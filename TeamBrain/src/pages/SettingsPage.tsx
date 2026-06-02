@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Settings as SettingsIcon, Sparkles, Download, HardDrive, Share2 } from 'lucide-react'
 import { AIConfigForm } from '@/components/ai/AIConfigForm'
 import { AIUsageBar } from '@/components/ai/AIUsageBar'
@@ -199,9 +199,9 @@ function ShareManagement() {
   const [loading, setLoading] = useState(true)
   const toast = useToast()
 
-  useState(() => {
+  useEffect(() => {
     loadShares()
-  })
+  }, [])
 
   async function loadShares() {
     try {

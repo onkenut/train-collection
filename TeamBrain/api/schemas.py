@@ -65,6 +65,7 @@ class PageOut(BaseModel):
     parent_id: Optional[str]
     title: str
     icon: str
+    content: str = ""
     sort_order: int
     is_template: bool
     metadata: dict[str, str]
@@ -107,7 +108,8 @@ class BlockOut(BaseModel):
 class PageSaveRequest(BaseModel):
     title: Optional[str] = None
     icon: Optional[str] = None
-    blocks: list[BlockCreate]
+    content: Optional[str] = None
+    blocks: list[BlockCreate] = []
 
 
 class TagCreate(BaseModel):

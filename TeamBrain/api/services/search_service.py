@@ -10,31 +10,26 @@ def segment_chinese(query: str) -> str:
 
 
 async def rebuild_fts(db: AsyncSession, page_id: str):
-    from ..models import Block, Page
-
     page_result = await db.execute(
-        text("SELECT title FROM pages WHERE id=:pid"), {"pid": page_id}
+        text("SELECT title, content, ai_summary FROM pages WHERE id=:pid"), {"pid": page_id}
     )
     page_row = page_result.fetchone()
     if not page_row:
         return
 
     title = page_row[0] or ""
+    content = page_row[1] or ""
+    ai_summary = page_row[2] or ""
 
-    blocks_result = await db.execute(
-        text("SELECT content FROM blocks WHERE page_id=:pid ORDER BY sort_order"),
-        {"pid": page_id},
-    )
-    content_parts = [row[0] for row in blocks_result.fetchall() if row[0]]
-    content = " ".join(content_parts)
+    if not content:
+        blocks_result = await db.execute(
+            text("SELECT content FROM blocks WHERE page_id=:pid ORDER BY sort_order"),
+            {"pid": page_id},
+        )
+        content_parts = [row[0] for row in blocks_result.fetchall() if row[0]]
+        content = " ".join(content_parts)
 
-    ai_summary_result = await db.execute(
-        text("SELECT value FROM pages WHERE id=:pid"),
-        {"pid": page_id},
-    )
-
-    ai_summary = ""
-    if page_id:
+    if not ai_summary:
         meta_result = await db.execute(
             text("SELECT metadata FROM pages WHERE id=:pid"), {"pid": page_id}
         )

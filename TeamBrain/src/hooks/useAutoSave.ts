@@ -23,7 +23,7 @@ export function useAutoSave({ pageId, content, title = '', interval = 5000 }: Us
     setSaving(true)
     try {
       await saveDraft(pageId, title, content)
-      await pageApi.save(pageId, [])
+      await pageApi.save(pageId, content, title)
       await markDraftSynced(pageId)
       lastSavedContentRef.current = content
       setDirty(false)

@@ -93,7 +93,7 @@ export const pageApi = {
   delete: (id: string) => api.delete<void>(`/pages/${id}`),
   move: (id: string, parentId: string | null, sortOrder: number) =>
     api.put<void>(`/pages/${id}/move`, { parent_id: parentId, sort_order: sortOrder }),
-  save: (id: string, blocks: Block[]) => api.post<void>(`/pages/${id}/save`, { blocks }),
+  save: (id: string, content: string, title?: string, blocks?: Block[]) => api.post<void>(`/pages/${id}/save`, { content, title, blocks }),
   fromTemplate: (templateId: string) => api.post<Page>(`/pages/from-template/${templateId}`),
 }
 

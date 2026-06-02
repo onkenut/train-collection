@@ -102,7 +102,8 @@ async def access_shared_page(token: str, body: ShareAccessRequest | None = None,
     return {
         "page": {
             "id": pr[0], "notebook_id": pr[1], "parent_id": pr[2],
-            "title": pr[3], "icon": pr[4], "sort_order": pr[5],
+            "title": pr[3], "icon": pr[4], "content": pr[10] or "",
+            "sort_order": pr[5],
             "is_template": bool(pr[6]), "metadata": meta,
             "created_at": pr[8], "updated_at": pr[9],
         },

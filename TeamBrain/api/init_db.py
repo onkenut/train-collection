@@ -46,6 +46,13 @@ async def create_tables():
         await conn.execute(text("PRAGMA journal_mode=WAL"))
         await conn.execute(text("PRAGMA foreign_keys=ON"))
 
+        result = await conn.execute(text("PRAGMA table_info(pages)"))
+        columns = [row[1] for row in result.fetchall()]
+        if 'content' not in columns:
+            await conn.execute(text("ALTER TABLE pages ADD COLUMN content TEXT NOT NULL DEFAULT ''"))
+        if 'ai_summary' not in columns:
+            await conn.execute(text("ALTER TABLE pages ADD COLUMN ai_summary TEXT"))
+
 
 async def insert_default_data():
     async with AsyncSessionLocal() as session:

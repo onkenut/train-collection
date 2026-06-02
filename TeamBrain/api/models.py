@@ -43,6 +43,8 @@ class Page(Base):
     parent_id = Column(String, ForeignKey("pages.id", ondelete="SET NULL"), nullable=True)
     title = Column(String, nullable=False, default="Untitled")
     icon = Column(String, nullable=False, default="\U0001f4c4")
+    content = Column(Text, nullable=False, default="")
+    ai_summary = Column(Text, nullable=True)
     sort_order = Column(Integer, nullable=False, default=0)
     is_template = Column(Boolean, nullable=False, default=False)
     metadata_ = Column("metadata", Text, nullable=False, default="{}")

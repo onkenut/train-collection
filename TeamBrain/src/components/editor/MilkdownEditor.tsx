@@ -13,8 +13,6 @@ import { EditorToolbar } from './EditorToolbar'
 import { BlockMenu } from './BlockMenu'
 import { PreviewPane } from './PreviewPane'
 
-import '@milkdown/theme-nord/style.css'
-
 interface MilkdownEditorProps {
   content: string
   pageId: string

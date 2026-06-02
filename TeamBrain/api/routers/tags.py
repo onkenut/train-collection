@@ -20,7 +20,8 @@ def _row_to_page_out(r) -> dict:
         pass
     return {
         "id": r[0], "notebook_id": r[1], "parent_id": r[2],
-        "title": r[3], "icon": r[4], "sort_order": r[5],
+        "title": r[3], "icon": r[4], "content": r[10] or "",
+        "sort_order": r[5],
         "is_template": bool(r[6]), "metadata": meta,
         "created_at": r[8], "updated_at": r[9],
     }

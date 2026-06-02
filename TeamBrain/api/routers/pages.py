@@ -21,7 +21,8 @@ def _row_to_page_out(r) -> dict:
         pass
     return {
         "id": r[0], "notebook_id": r[1], "parent_id": r[2],
-        "title": r[3], "icon": r[4], "sort_order": r[5],
+        "title": r[3], "icon": r[4], "content": r[10] or "",
+        "sort_order": r[5],
         "is_template": bool(r[6]), "metadata": meta,
         "created_at": r[8], "updated_at": r[9],
     }
@@ -61,7 +62,8 @@ async def create_page(notebook_id: str, body: PageCreate, db: AsyncSession = Dep
     await db.refresh(page)
     return PageOut(
         id=page.id, notebook_id=page.notebook_id, parent_id=page.parent_id,
-        title=page.title, icon=page.icon, sort_order=page.sort_order,
+        title=page.title, icon=page.icon, content=page.content,
+        sort_order=page.sort_order,
         is_template=page.is_template, metadata=json.loads(page.metadata_) if page.metadata_ else {},
         created_at=page.created_at, updated_at=page.updated_at,
     )
@@ -172,6 +174,8 @@ async def save_page(page_id: str, body: PageSaveRequest, db: AsyncSession = Depe
         page_updates["title"] = body.title
     if body.icon is not None:
         page_updates["icon"] = body.icon
+    if body.content is not None:
+        page_updates["content"] = body.content
     set_clause = ", ".join(f"{k}=:{k}" for k in page_updates)
     page_updates["id"] = page_id
     await db.execute(text(f"UPDATE pages SET {set_clause} WHERE id=:id"), page_updates)
@@ -197,13 +201,24 @@ async def save_page(page_id: str, body: PageSaveRequest, db: AsyncSession = Depe
 
     await db.execute(text("DELETE FROM blocks WHERE page_id=:pid"), {"pid": page_id})
 
-    for i, block_data in enumerate(body.blocks):
+    blocks_to_save = body.blocks
+    if not blocks_to_save and body.content is not None:
+        blocks_to_save = [
+            BlockCreate(
+                type="document",
+                content=body.content,
+                properties={},
+                sort_order=0,
+            )
+        ]
+
+    for i, block_data in enumerate(blocks_to_save):
         block = Block(
             page_id=page_id,
             type=block_data.type,
             content=block_data.content,
             properties=json.dumps(block_data.properties),
-            sort_order=block_data.sort_order or i,
+            sort_order=block_data.sort_order if block_data.sort_order is not None else i,
             parent_block_id=block_data.parent_block_id,
             created_at=now,
             updated_at=now,
