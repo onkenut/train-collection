@@ -1,0 +1,227 @@
+- id: "merchant_1"
+  npc_name: "神秘商人"
+  nodes:
+    - id: "start"
+      text: "欢迎，旅行者。想看看我的货物吗？"
+      options:
+        - text: "看看武器"
+          next: "weapons"
+        - text: "看看防具"
+          next: "armor"
+        - text: "看看药水"
+          next: "potions"
+        - text: "不了，谢谢"
+          next: "end"
+    - id: "weapons"
+      text: "这是我这里最好的武器。"
+      action: "open_shop"
+      action_data: {category: "weapon"}
+      options:
+        - text: "返回"
+          next: "start"
+    - id: "armor"
+      text: "这些护甲能保护你免受伤害。"
+      action: "open_shop"
+      action_data: {category: "armor"}
+      options:
+        - text: "返回"
+          next: "start"
+    - id: "potions"
+      text: "我的药水都是最高品质的。"
+      action: "open_shop"
+      action_data: {category: "consumable"}
+      options:
+        - text: "返回"
+          next: "start"
+
+- id: "librarian_1"
+  npc_name: "古老图书管理员"
+  nodes:
+    - id: "start"
+      text: "你好，年轻的冒险者。你是来寻找失落典籍的吗？"
+      options:
+        - text: "是的，我在收集远古卷轴"
+          next: "collecting"
+        - text: "你知道这是什么地方？"
+          next: "where"
+        - text: "再见"
+          next: "end"
+    - id: "collecting"
+      text: "我会检查你收集了多少卷轴..."
+      action: "check_scrolls"
+      options:
+        - text: "继续"
+          next: "scroll_status"
+    - id: "scroll_status"
+      text: "继续你的探索吧。收集全部七章，你将获得巨大的力量。"
+      action: "give_reward_if_complete"
+      options:
+        - text: "谢谢"
+          next: "end"
+    - id: "where"
+      text: "这里曾经是一座伟大的图书馆，直到深渊侵蚀了这片土地。"
+      options:
+        - text: "我会帮你恢复它"
+          next: "help"
+        - text: "我要走了"
+          next: "end"
+    - id: "help"
+      text: "那就去寻找那些失落的典籍吧，只有那样才能恢复这里的荣光。"
+      options:
+        - text: "我会的"
+          next: "end"
+
+- id: "priest_1"
+  npc_name: "神父"
+  nodes:
+    - id: "start"
+      text: "愿神保佑你，孩子。你需要什么？"
+      options:
+        - text: "请治疗我"
+          next: "heal"
+        - text: "请祝福我"
+          next: "bless"
+        - text: "我想忏悔"
+          next: "repent"
+        - text: "再见"
+          next: "end"
+    - id: "heal"
+      text: "神的治愈之光降临于你。"
+      action: "full_heal"
+      options:
+        - text: "谢谢神父"
+          next: "end"
+    - id: "bless"
+      text: "接受这份祝福吧，它将在战斗中保护你。"
+      action: "apply_blessing"
+      action_data: {buff: "holy_protection", duration: 600}
+      options:
+        - text: "谢谢神父"
+          next: "end"
+    - id: "repent"
+      text: "说出你的罪过，神会原谅你的。"
+      options:
+        - text: "（低头祈祷"
+          next: "pray"
+    - id: "pray"
+      text: "你的心灵得到了净化。"
+      action: "restore_sanity"
+      options:
+        - text: "谢谢神父"
+          next: "end"
+
+- id: "stranger_1"
+  npc_name: "神秘的陌生人"
+  nodes:
+    - id: "start"
+      text: "...你来了。我一直在等你。"
+      options:
+        - text: "你是谁？"
+          next: "who"
+        - text: "你为什么等我？"
+          next: "why"
+        - text: "走开"
+          next: "leave"
+    - id: "who"
+      text: "我是谁并不重要。重要的是你是谁。"
+      options:
+        - text: "我是一名冒险者"
+          next: "adventurer"
+        - text: "你想怎样？"
+          next: "what"
+    - id: "adventurer"
+      text: "冒险者...这个称号承载了太多的死亡。小心你的选择。"
+      action: "give_hint"
+      options:
+        - text: "你什么意思？"
+          next: "meaning"
+        - text: "我要走了"
+          next: "end"
+    - id: "meaning"
+      text: "你很快就会明白的。拿着这个，它可能会帮助你。"
+      action: "give_item"
+      action_data: {item_id: "ancient_scroll_1"}
+      options:
+        - text: "谢谢"
+          next: "end"
+    - id: "why"
+      text: "因为你是被选中的人。或者说，被诅咒的人。"
+      options:
+        - text: "被诅咒？"
+          next: "curse"
+        - text: "我不相信"
+          next: "disbelieve"
+    - id: "curse"
+      text: "进入这座地牢的人，没有一个能活着出来。但你可能是例外。"
+      action: "start_quest"
+      action_data: {quest_id: "escape_dungeon"}
+      options:
+        - text: "我会逃出去的"
+          next: "end"
+    - id: "what"
+      text: "我只是想给你一个警告。深渊比你想象的更危险。"
+      options:
+        - text: "我会小心的"
+          next: "end"
+    - id: "leave"
+      text: "...随你便。但我们还会再见面的。"
+      action: "npc_disappear"
+      options:
+        - text: "（他消失了"
+          next: "end"
+    - id: "disbelieve"
+      text: "不信？那你就自己去看看吧。"
+      options:
+        - text: "我会的"
+          next: "end"
+
+- id: "boss_intro"
+  npc_name: "深渊图书管理员"
+  nodes:
+    - id: "start"
+      text: "你终于来了，收集者。你以为你能带着那些典籍离开这里吗？"
+      options:
+        - text: "我要夺回这些典籍，恢复图书馆"
+          next: "fight"
+        - text: "这些典籍属于谁？"
+          next: "belong"
+    - id: "fight"
+      text: "那就来吧！让我看看你有什么本事！"
+      action: "start_boss_fight"
+      action_data: {boss_id: "abyssal_librarian"}
+      options:
+        - text: "接受挑战"
+          next: "end"
+    - id: "belong"
+      text: "它们现在属于深渊了！你也一样！"
+      action: "start_boss_fight"
+      action_data: {boss_id: "abyssal_librarian"}
+      options:
+        - text: "那就开战吧！"
+          next: "end"
+
+- id: "blacksmith_1"
+  npc_name: "老铁匠"
+  nodes:
+    - id: "start"
+      text: "嘿，冒险者！需要我能为你打造什么吗？"
+      options:
+        - text: "强化武器"
+          next: "upgrade_weapon"
+        - text: "修复装备"
+          next: "repair"
+        - text: "不了，谢谢"
+          next: "end"
+    - id: "upgrade_weapon"
+      text: "把你的武器给我看看。我需要一些材料来强化它。"
+      action: "open_upgrade"
+      action_data: {type: "weapon"}
+      options:
+        - text: "返回"
+          next: "start"
+    - id: "repair"
+      text: "你的装备看起来有些损坏，让我来修好它。"
+      action: "repair_equipment"
+      options:
+        - text: "谢谢"
+          next: "end"

@@ -1,0 +1,323 @@
+- id: "rusty_dagger"
+  name: "生锈的匕首"
+  type: "weapon"
+  rarity: "common"
+  description: "一把锈迹斑斑的匕首。"
+  stats: {attack: 2}
+  value: 5
+  stackable: false
+
+- id: "iron_sword"
+  name: "铁剑"
+  type: "weapon"
+  rarity: "common"
+  description: "一把普通的铁制长剑。"
+  stats: {attack: 5}
+  value: 20
+  stackable: false
+
+- id: "steel_longsword"
+  name: "钢制长剑"
+  type: "weapon"
+  rarity: "magic"
+  description: "一把精心打造的钢制长剑。"
+  stats: {attack: 8}
+  value: 50
+  stackable: false
+
+- id: "flame_blade"
+  name: "烈焰之刃"
+  type: "weapon"
+  rarity: "rare"
+  description: "燃烧着永恒火焰的魔法剑。"
+  stats: {attack: 12, fire_damage: 5}
+  value: 150
+  stackable: false
+
+- id: "shadow_dagger"
+  name: "暗影匕首"
+  type: "weapon"
+  rarity: "rare"
+  description: "能吸收光线的神秘匕首。"
+  stats: {attack: 10, crit_chance: 0.15}
+  value: 120
+  stackable: false
+
+- id: "holy_avenger"
+  name: "神圣复仇者"
+  type: "weapon"
+  rarity: "legendary"
+  description: "一把被祝福过的神圣武器，对邪恶生物有额外伤害。"
+  stats: {attack: 18, holy_damage: 10}
+  value: 500
+  stackable: false
+
+- id: "staff_of_wisdom"
+  name: "智慧法杖"
+  type: "weapon"
+  rarity: "rare"
+  description: "增强施法者魔力的古老法杖。"
+  stats: {attack: 4, mp_bonus: 20, spell_damage: 1.2}
+  value: 180
+  stackable: false
+
+- id: "bone_crusher"
+  name: "碎骨者"
+  type: "weapon"
+  rarity: "magic"
+  description: "一把沉重的钉头锤，能轻易击碎骨头。"
+  stats: {attack: 10, armor_pierce: 0.2}
+  value: 80
+  stackable: false
+
+- id: "book_of_spells"
+  name: "法术之书"
+  type: "weapon"
+  rarity: "legendary"
+  description: "包含无数强大法术的神秘典籍。"
+  stats: {attack: 6, mp_bonus: 50, spell_damage: 1.5}
+  value: 600
+  stackable: false
+
+- id: "dragon_slayer"
+  name: "屠龙剑"
+  type: "weapon"
+  rarity: "legendary"
+  description: "传说中用来斩杀巨龙的神器。"
+  stats: {attack: 25, dragon_damage: 50}
+  value: 1000
+  stackable: false
+
+- id: "leather_armor"
+  name: "皮甲"
+  type: "armor"
+  rarity: "common"
+  description: "简单的皮革护甲。"
+  stats: {defense: 3}
+  value: 15
+  stackable: false
+
+- id: "chainmail"
+  name: "锁子甲"
+  type: "armor"
+  rarity: "common"
+  description: "由金属环编织而成的护甲。"
+  stats: {defense: 6}
+  value: 40
+  stackable: false
+
+- id: "plate_armor"
+  name: "板甲"
+  type: "armor"
+  rarity: "magic"
+  description: "全身覆盖的重型板甲。"
+  stats: {defense: 12, speed_penalty: -2}
+  value: 100
+  stackable: false
+
+- id: "shadow_cloak"
+  name: "暗影斗篷"
+  type: "armor"
+  rarity: "rare"
+  description: "能让穿戴者融入阴影的神秘斗篷。"
+  stats: {defense: 5, evasion: 0.2}
+  value: 160
+  stackable: false
+
+- id: "holy_armor"
+  name: "神圣护甲"
+  type: "armor"
+  rarity: "legendary"
+  description: "被圣光祝福的神圣护甲。"
+  stats: {defense: 15, hp_regen: 2, holy_resist: 0.5}
+  value: 450
+  stackable: false
+
+- id: "dragon_scale_armor"
+  name: "龙鳞甲"
+  type: "armor"
+  rarity: "legendary"
+  description: "由巨龙鳞片打造的传说护甲。"
+  stats: {defense: 20, fire_resist: 0.7, all_resist: 0.3}
+  value: 800
+  stackable: false
+
+- id: "wizards_robe"
+  name: "法师长袍"
+  type: "armor"
+  rarity: "magic"
+  description: "增强魔力的法师专用长袍。"
+  stats: {defense: 3, mp_bonus: 30, spell_damage: 1.1}
+  value: 90
+  stackable: false
+
+- id: "boots_of_speed"
+  name: "疾风之靴"
+  type: "armor"
+  rarity: "rare"
+  description: "能大幅提升移动速度的魔法靴子。"
+  stats: {defense: 2, speed_bonus: 5}
+  value: 130
+  stackable: false
+
+- id: "health_potion"
+  name: "生命药水"
+  type: "consumable"
+  rarity: "common"
+  description: "恢复少量生命值的红色药水。"
+  stats: {heal: 30}
+  value: 10
+  stackable: true
+
+- id: "great_health_potion"
+  name: "强效生命药水"
+  type: "consumable"
+  rarity: "magic"
+  description: "恢复大量生命值的红色药水。"
+  stats: {heal: 80}
+  value: 30
+  stackable: true
+
+- id: "mana_potion"
+  name: "魔力药水"
+  type: "consumable"
+  rarity: "common"
+  description: "恢复少量魔力值的蓝色药水。"
+  stats: {mana: 25}
+  value: 12
+  stackable: true
+
+- id: "great_mana_potion"
+  name: "强效魔力药水"
+  type: "consumable"
+  rarity: "magic"
+  description: "恢复大量魔力值的蓝色药水。"
+  stats: {mana: 60}
+  value: 35
+  stackable: true
+
+- id: "elixir_of_power"
+  name: "力量药剂"
+  type: "consumable"
+  rarity: "rare"
+  description: "暂时提升攻击力的神奇药剂。"
+  stats: {attack_buff: 10, duration: 60}
+  value: 50
+  stackable: true
+
+- id: "antidote"
+  name: "解毒剂"
+  type: "consumable"
+  rarity: "common"
+  description: "能治愈中毒状态的药剂。"
+  stats: {cure_poison: true}
+  value: 8
+  stackable: true
+
+- id: "phoenix_feather"
+  name: "凤凰羽毛"
+  type: "consumable"
+  rarity: "legendary"
+  description: "死亡时自动复活并恢复全部生命。"
+  stats: {revive: true, heal_full: true}
+  value: 200
+  stackable: true
+
+- id: "bomb"
+  name: "炸弹"
+  type: "consumable"
+  rarity: "magic"
+  description: "对范围内敌人造成大量伤害。"
+  stats: {area_damage: 40, radius: 3}
+  value: 25
+  stackable: true
+
+- id: "ancient_scroll_1"
+  name: "远古卷轴·第一章"
+  type: "quest"
+  rarity: "rare"
+  description: "失落典籍的第一部分，记载着古老的知识。"
+  stats: {}
+  value: 0
+  stackable: false
+
+- id: "ancient_scroll_2"
+  name: "远古卷轴·第二章"
+  type: "quest"
+  rarity: "rare"
+  description: "失落典籍的第二部分，记载着古老的知识。"
+  stats: {}
+  value: 0
+  stackable: false
+
+- id: "ancient_scroll_3"
+  name: "远古卷轴·第三章"
+  type: "quest"
+  rarity: "rare"
+  description: "失落典籍的第三部分，记载着古老的知识。"
+  stats: {}
+  value: 0
+  stackable: false
+
+- id: "ancient_scroll_4"
+  name: "远古卷轴·第四章"
+  type: "quest"
+  rarity: "rare"
+  description: "失落典籍的第四部分，记载着古老的知识。"
+  stats: {}
+  value: 0
+  stackable: false
+
+- id: "ancient_scroll_5"
+  name: "远古卷轴·第五章"
+  type: "quest"
+  rarity: "rare"
+  description: "失落典籍的第五部分，记载着古老的知识。"
+  stats: {}
+  value: 0
+  stackable: false
+
+- id: "ancient_scroll_6"
+  name: "远古卷轴·第六章"
+  type: "quest"
+  rarity: "rare"
+  description: "失落典籍的第六部分，记载着古老的知识。"
+  stats: {}
+  value: 0
+  stackable: false
+
+- id: "ancient_scroll_7"
+  name: "远古卷轴·第七章"
+  type: "quest"
+  rarity: "legendary"
+  description: "失落典籍的最终章，蕴含着强大的力量。"
+  stats: {}
+  value: 0
+  stackable: false
+
+- id: "gold_key"
+  name: "金钥匙"
+  type: "key"
+  rarity: "rare"
+  description: "一把闪闪发光的金钥匙。"
+  stats: {}
+  value: 100
+  stackable: false
+
+- id: "silver_key"
+  name: "银钥匙"
+  type: "key"
+  rarity: "magic"
+  description: "一把精致的银钥匙。"
+  stats: {}
+  value: 50
+  stackable: false
+
+- id: "dungeon_map"
+  name: "地牢地图"
+  type: "quest"
+  rarity: "magic"
+  description: "显示当前楼层布局的神秘地图。"
+  stats: {reveal_map: true}
+  value: 75
+  stackable: false

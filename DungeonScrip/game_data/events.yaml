@@ -1,0 +1,377 @@
+- id: "mysterious_chest"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一个神秘的宝箱！"
+    - type: "give_item"
+      item_id: "health_potion"
+      quantity: 1
+
+- id: "fountain_of_health"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一座散发着神圣光芒的喷泉。你喝下泉水，感到精力充沛。"
+    - type: "heal"
+      amount: 50
+    - type: "restore_mp"
+      amount: 30
+
+- id: "cursed_altar"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一座散发着邪恶气息的祭坛。当你靠近时，一股黑暗力量侵蚀了你。"
+    - type: "damage"
+      amount: 20
+    - type: "apply_debuff"
+      debuff: "weakness"
+      duration: 60
+
+- id: "blessed_altar"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一座神圣的祭坛。你跪下祈祷，感受到神圣的祝福。"
+    - type: "apply_buff"
+      buff: "holy_protection"
+      duration: 300
+    - type: "heal"
+      amount: 30
+
+- id: "wandering_merchant"
+  trigger:
+    type: "random"
+    chance: 0.1
+  conditions:
+    - type: "floor_range"
+      min: 3
+      max: 10
+  actions:
+    - type: "message"
+      text: "一个神秘的商人出现在你面前。"
+    - type: "start_dialogue"
+      dialogue_id: "merchant_1"
+
+- id: "ancient_trap"
+  trigger:
+    type: "step_on"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你触发了一个古老的陷阱！箭矢从墙壁射出！"
+    - type: "damage"
+      amount: 25
+    - type: "apply_debuff"
+      debuff: "bleeding"
+      duration: 30
+
+- id: "hidden_passage"
+  trigger:
+    type: "interact"
+    x: null
+    y: null
+    floor: null
+  conditions:
+    - type: "has_item"
+      item_id: "dungeon_map"
+  actions:
+    - type: "message"
+      text: "你发现了一条隐藏的通道！"
+    - type: "reveal_area"
+      radius: 5
+
+- id: "magic_shrine"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一座魔法神龛。你触摸它，感受到魔力涌入你的身体。"
+    - type: "restore_mp"
+      amount: 50
+    - type: "apply_buff"
+      buff: "spell_boost"
+      duration: 120
+
+- id: "library_section"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions:
+    - type: "floor_range"
+      min: 5
+      max: 15
+  actions:
+    - type: "message"
+      text: "你发现了图书馆的一部分。书架上散落着古老的书籍。"
+    - type: "random_item"
+      items:
+        - item_id: "ancient_scroll_1"
+          chance: 0.1
+        - item_id: "ancient_scroll_2"
+          chance: 0.1
+        - item_id: "ancient_scroll_3"
+          chance: 0.1
+        - item_id: "mana_potion"
+          chance: 0.4
+
+- id: "forbidden_tome"
+  trigger:
+    type: "interact"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一本被禁止的典籍。打开它会释放强大的力量，但也可能带来诅咒..."
+    - type: "choice"
+      options:
+        - text: "打开它"
+          actions:
+            - type: "message"
+              text: "禁忌的知识涌入你的脑海！"
+            - type: "give_exp"
+              amount: 100
+            - type: "damage"
+              amount: 30
+        - text: "离开"
+          actions:
+            - type: "message"
+              text: "你明智地选择了离开。"
+
+- id: "ghost_apparition"
+  trigger:
+    type: "random"
+    chance: 0.05
+  conditions:
+    - type: "floor_range"
+      min: 8
+      max: 20
+  actions:
+    - type: "message"
+      text: "一个幽灵出现在你面前！它似乎想要告诉你什么..."
+    - type: "start_dialogue"
+      dialogue_id: "stranger_1"
+
+- id: "time_rift"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一个时空裂缝！它将你传送到了楼层的另一个地方。"
+    - type: "teleport_random"
+      radius: 10
+
+- id: "puzzle_chamber"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你进入了一个谜题房间。墙上刻着奇怪的符号..."
+    - type: "puzzle"
+      puzzle_type: "riddle"
+      reward:
+        - type: "give_item"
+          item_id: "gold_key"
+          quantity: 1
+
+- id: "treasure_vault"
+  trigger:
+    type: "interact"
+    x: null
+    y: null
+    floor: null
+  conditions:
+    - type: "has_item"
+      item_id: "gold_key"
+  actions:
+    - type: "message"
+      text: "你用金钥匙打开了宝藏室！里面堆满了金币和宝物！"
+    - type: "give_gold"
+      amount: 500
+    - type: "give_item"
+      item_id: "phoenix_feather"
+      quantity: 1
+    - type: "remove_item"
+      item_id: "gold_key"
+      quantity: 1
+
+- id: "demon_summoning"
+  trigger:
+    type: "interact"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你不小心触发了一个恶魔召唤阵！一个强大的恶魔出现了！"
+    - type: "spawn_monster"
+      monster_id: "hell_hound"
+      quantity: 2
+
+- id: "angel_blessing"
+  trigger:
+    type: "random"
+    chance: 0.03
+  conditions:
+    - type: "low_health"
+      percentage: 0.2
+  actions:
+    - type: "message"
+      text: "一位天使降临，治愈了你的伤口！"
+    - type: "full_heal"
+    - type: "apply_buff"
+      buff: "angel_blessing"
+      duration: 600
+
+- id: "floor_boss_warning"
+  trigger:
+    type: "enter_floor"
+    floor: 20
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你感到一股强大的邪恶力量在前方等待着你。这是地牢的最深处..."
+    - type: "start_dialogue"
+      dialogue_id: "boss_intro"
+
+- id: "secret_room"
+  trigger:
+    type: "interact"
+    x: null
+    y: null
+    floor: null
+  conditions:
+    - type: "has_item"
+      item_id: "silver_key"
+  actions:
+    - type: "message"
+      text: "你用银钥匙打开了一扇隐藏的门，发现了一个秘密房间！"
+    - type: "give_gold"
+      amount: 200
+    - type: "random_item"
+      items:
+        - item_id: "great_health_potion"
+          chance: 0.5
+        - item_id: "great_mana_potion"
+          chance: 0.5
+    - type: "remove_item"
+      item_id: "silver_key"
+      quantity: 1
+
+- id: "mimic_chest"
+  trigger:
+    type: "interact"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "当你打开宝箱时，它突然活了过来！这是一个宝箱怪！"
+    - type: "spawn_monster"
+      monster_id: "mimic"
+      quantity: 1
+
+- id: "shrine_of_experience"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "你发现了一座经验之神龛。古老的智慧流入你的思维！"
+    - type: "give_exp"
+      amount: 150
+
+- id: "poison_gas_trap"
+  trigger:
+    type: "step_on"
+    x: null
+    y: null
+    floor: null
+  conditions: []
+  actions:
+    - type: "message"
+      text: "毒气从地板喷出！你吸入了有毒的气体！"
+    - type: "damage"
+      amount: 15
+    - type: "apply_debuff"
+      debuff: "poison"
+      duration: 45
+
+- id: "ancient_blacksmith"
+  trigger:
+    type: "random"
+    chance: 0.08
+  conditions:
+    - type: "floor_range"
+      min: 6
+      max: 15
+  actions:
+    - type: "message"
+      text: "你发现了一位古老的铁匠，他在地牢中迷失了很久。"
+    - type: "start_dialogue"
+      dialogue_id: "blacksmith_1"
+
+- id: "scroll_guardian"
+  trigger:
+    type: "position"
+    x: null
+    y: null
+    floor: null
+  conditions:
+    - type: "floor_range"
+      min: 10
+      max: 19
+  actions:
+    - type: "message"
+      text: "一个守护者出现了！它守护着一页远古卷轴！"
+    - type: "spawn_monster"
+      monster_id: "gargoyle"
+      quantity: 1
+    - type: "give_item"
+      item_id: "ancient_scroll_4"
+      quantity: 1
+      condition: "monster_defeated"
